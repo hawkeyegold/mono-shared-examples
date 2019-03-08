@@ -2,6 +2,8 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+using mono_shared;
+
 namespace mono_shared_examples {
 	/// <summary>
 	/// This is the main type for your game.
