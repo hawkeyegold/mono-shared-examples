@@ -7,11 +7,16 @@ namespace mono_shared_examples {
 	/// This is the main type for your game.
 	/// </summary>
 	public class Game1:Game {
-		GraphicsDeviceManager graphics;
-		SpriteBatch spriteBatch;
+		GraphicsDeviceManager m_graphics;
+		SpriteBatch m_spriteBatch;
+		Texture2D m_panelTileTx;
+		Panel m_panel;
 
 		public Game1() {
-			graphics = new GraphicsDeviceManager(this);
+			m_graphics = new GraphicsDeviceManager(this);
+			m_graphics.IsFullScreen=false;
+			m_graphics.PreferredBackBufferWidth=1280;
+			m_graphics.PreferredBackBufferHeight=720;
 			Content.RootDirectory = "Content";
 		}
 
@@ -22,7 +27,7 @@ namespace mono_shared_examples {
 		/// and initialize them as well.
 		/// </summary>
 		protected override void Initialize() {
-			// TODO: Add your initialization logic here
+			IsMouseVisible=true;
 
 			base.Initialize();
 		}
@@ -33,9 +38,10 @@ namespace mono_shared_examples {
 		/// </summary>
 		protected override void LoadContent() {
 			// Create a new SpriteBatch, which can be used to draw textures.
-			spriteBatch = new SpriteBatch(GraphicsDevice);
+			m_spriteBatch = new SpriteBatch(GraphicsDevice);
 
-			// TODO: use this.Content to load your game content here
+			m_panelTileTx=Content.Load<Texture2D>("PanelTiles20x20");
+			m_panel=new Panel(m_panelTileTx,100,100,140,230);
 		}
 
 		/// <summary>
@@ -67,7 +73,7 @@ namespace mono_shared_examples {
 		protected override void Draw(GameTime gameTime) {
 			GraphicsDevice.Clear(Color.CornflowerBlue);
 
-			// TODO: Add your drawing code here
+			m_panel.Draw(m_spriteBatch);
 
 			base.Draw(gameTime);
 		}
